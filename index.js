@@ -93,7 +93,7 @@ class Car {
   }else{
     this.tank = 0;
     this.odometer = this.odometer + driveDistance;
-return `i ran out of fuel at ${this.odometer} miles!`
+return `I ran out of fuel at ${this.odometer} miles!`
   }
 
 }
@@ -173,13 +173,21 @@ class Instructor extends Lambdasian {
 */
 class Student extends Lambdasian{
   constructor(attributes){
-    super()
+    super(attributes);
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
     }
-
-}
+    listSubjects(){
+      return `Loving ${this.favSubjects}`;
+    }
+    PRAssignment(subject){
+      return `${this.name} has submitted a PR for ${subject}`;
+    }
+    sprintChallenge(subject){
+      return `${this.name} has begun sprint challenge on ${subject}`;
+    }
+  }
 
 /*
   TASK 6
@@ -194,8 +202,18 @@ class Student extends Lambdasian{
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor {
+  constructor(attributes){
+    super(attributes);
+    this.gradClassName = attributes.gradClassName;
+    this.favInstructor = attributes.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times! `;
+  }
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
 
 /*
@@ -206,6 +224,27 @@ class ProjectManager {
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+Student.grade = Math.floor(Math.random()*100);
+
+Instructor.prototype.adjust = function() {
+  if (Math.random() <= .05){
+    Student.grade -= Math.floor(Math.random());
+  }else{
+    Student.grade += Math.floor(Math.random());
+  }
+}
+
+Student.prototype.grad
+
+// function (a, b) {
+//   if (Math.random() <= 0.5) {
+//     result = a - b;
+//   } else {
+//     result = a + b;
+//   }
+//   return result;
+// }
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
