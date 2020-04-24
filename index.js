@@ -177,6 +177,7 @@ class Student extends Lambdasian{
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
+    this.grade = Math.floor(Math.random()*101);
     }
     listSubjects(){
       return `Loving ${this.favSubjects}`;
@@ -225,26 +226,43 @@ class ProjectManager extends Instructor {
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
 
-Student.grade = Math.floor(Math.random()*100);
 
-Instructor.prototype.adjust = function() {
-  if (Math.random() <= .05){
-    Student.grade -= Math.floor(Math.random());
+
+Instructor.prototype.adjust = function(peasant) {
+  if (Math.random() <= 0.3){
+    peasant.grade -= Math.floor(Math.random()*21);
+    return peasant.grade;
   }else{
-    Student.grade += Math.floor(Math.random());
+    peasant.grade += Math.floor(Math.random()*21);
+    return peasant.grade;
+  }
+};
+
+Student.prototype.graduate = function() {
+  if (this.grade > 70){
+    return `Ready to graduate!`
+  }else{
+    return `Grade more assingments to increase scores`
   }
 }
 
-Student.prototype.grad
+let studentOne = new Student({
+  previousBackground:"builder",
+  className:"web31", 
+  favSubjects:[]
+});
 
-// function (a, b) {
-//   if (Math.random() <= 0.5) {
-//     result = a - b;
-//   } else {
-//     result = a + b;
-//   }
-//   return result;
-// }
+let instructorGary = new Instructor({
+  specialty: "Being Cool",
+  favLanguage: "english",
+  catchPhrase: "Im going to Flex you!"
+})
+
+
+console.log(studentOne.grade)
+console.log(instructorGary.adjust(studentOne))
+console.log(studentOne.grade)
+console.log(studentOne.graduate())
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
